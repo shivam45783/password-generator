@@ -5,8 +5,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #1f2937;
-  
+  background-color: #333;
 }
 .container {
   display: flex;
@@ -14,12 +13,12 @@ body {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  background-color: #748d92;
+  background-color: #ccc;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .title {
@@ -27,14 +26,13 @@ body {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #e64833;
+  color: #BB2CD9;
 }
 #text {
   /* font-family: "Raleway", serif; */
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.8rem;
-  color: #d8ac1d;
-
+  color: royalblue;
 }
 .password {
   padding: 5px;
@@ -44,30 +42,44 @@ body {
   outline: 2px solid transparent;
   outline-offset: 2px;
   width: 100%;
-  
-
 }
-.copyBtn {
+.btn {
   padding-top: 3px;
   padding-bottom: 3px;
   border-radius: 8px;
   border: none;
   outline: 2px solid transparent;
   outline-offset: 2px;
+  background-color: transparent;
+  border: 1px solid #1d4ed8;
+  color: #1d4ed8;
+  cursor: pointer;
+}
+
+.btn:hover {
   background-color: #1d4ed8;
   color: white;
 }
+
 .display {
   display: flex;
   justify-content: space-between;
   width: 100%;
   gap: 5px;
-  
 }
 .controls {
   display: flex;
-  gap: 2px;
+  gap: 5px;
+  align-items: center;
 }
+
 .lengthSlider input {
   cursor: pointer;
 }
+
+.controls * {
+  display: flex;
+  align-items: center;
+}
+
+

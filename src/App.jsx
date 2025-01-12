@@ -4,14 +4,15 @@ import { useCallback } from "react";
 import { useEffect } from "react";
 
 function App() {
-  const [length, setLength] = useState(8);
-  const [numAllowed, setNumAllowed] = useState(false);
+  const [length, setLength] = useState(4);
+  const [abcdAllowed, setAbcdAllowed] = useState(true);
+  const [numAllowed, setNumAllowed] = useState(true);
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState("");
 
   const generatePassword = useCallback(() => {
     let pass = "";
-    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let str = "";if (abcdAllowed) str +="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     if (numAllowed) str += "0123456789";
     if (charAllowed) str += "!@#$%^&*()_+~`";
 
@@ -20,18 +21,19 @@ function App() {
       pass += str.charAt(char);
     }
     setPassword(pass);
-  }, [numAllowed, charAllowed, length]);
+  }, [abcdAllowed, numAllowed, charAllowed, length]);
 
   useEffect(() => {
     generatePassword();
-  }, [numAllowed, charAllowed, length]);
+  }, [abcdAllowed, numAllowed, charAllowed, length]);
 
   return (
     <div className="container">
       <h1 className="title">Password Generator</h1>
       <div className="display">
         <input type="text" className="password" value={password} readOnly />
-        <button className="copyBtn">copy</button>
+        <button className="btn" onClick={() => navigator.clipboard.writeText(password)}>Copy</button>
+        <button className="btn" onClick={generatePassword}>Regenerate</button>
       </div>
       <div className="controls">
         <div className="lengthSlider">
@@ -39,7 +41,7 @@ function App() {
             type="range"
             name="length"
             id="length"
-            min={8}
+            min={4}
             max={30}
             value={length}
             onChange={(e) => setLength(e.target.value)}
@@ -49,20 +51,42 @@ function App() {
           </label>
         </div>
         <div className="num_checkBox">
-          <input type="checkbox" name="numAllowed" id="numbers"
-          onChange={()=>{
-            setNumAllowed(!numAllowed);
-          }}
+          <input
+            type="checkbox"
+            name="abcdAllowed"
+            id="alphas"
+            checked={abcdAllowed}
+            onChange={() => {
+              setAbcdAllowed(!abcdAllowed);
+            }}
+          />
+          <label htmlFor="alphas" id="text">
+            Alphabets
+          </label>
+        </div>
+        <div className="num_checkBox">
+          <input
+            type="checkbox"
+            name="numAllowed"
+            id="numbers"
+            checked={numAllowed}
+            onChange={() => {
+              setNumAllowed(!numAllowed);
+            }}
           />
           <label htmlFor="numbers" id="text">
             Numbers
           </label>
         </div>
         <div className="char_checkBox">
-          <input type="checkbox" name="charsAllowed" id="chars" 
-          onChange= {()=>{
-            setCharAllowed(!charAllowed)
-          }}
+          <input
+            type="checkbox"
+            name="charsAllowed"
+            id="chars"
+            checked={charAllowed}
+            onChange={() => {
+              setCharAllowed(!charAllowed);
+            }}
           />
           <label htmlFor="chars" id="text">
             Special Characters
