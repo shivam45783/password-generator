@@ -66,6 +66,7 @@ body {
   justify-content: space-between;
   width: 100%;
   gap: 5px;
+  
 }
 .controls {
   display: flex;
@@ -80,6 +81,8 @@ body {
 .controls * {
   display: flex;
   align-items: center;
+  
+  flex-wrap: wrap;
 }
 
 
