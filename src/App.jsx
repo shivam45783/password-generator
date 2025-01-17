@@ -12,7 +12,9 @@ function App() {
 
   const generatePassword = useCallback(() => {
     let pass = "";
-    let str = "";if (abcdAllowed) str +="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let str = "";
+    if (abcdAllowed)
+      str += "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     if (numAllowed) str += "0123456789";
     if (charAllowed) str += "!@#$%^&*()_+~`";
 
@@ -32,8 +34,15 @@ function App() {
       <h1 className="title">Password Generator</h1>
       <div className="display">
         <input type="text" className="password" value={password} readOnly />
-        <button className="btn" onClick={() => navigator.clipboard.writeText(password)}>Copy</button>
-        <button className="btn" onClick={generatePassword}>Regenerate</button>
+        <button
+          className="btn"
+          onClick={() => navigator.clipboard.writeText(password)}
+        >
+          Copy
+        </button>
+        <button className="btn" onClick={generatePassword}>
+          Regenerate
+        </button>
       </div>
       <div className="controls">
         <div className="lengthSlider">
